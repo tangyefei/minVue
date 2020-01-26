@@ -1,0 +1,17 @@
+{
+  "name": "vue",
+  "version": "1.0.0",
+  "description": "模拟实现的迷你版本的Vue.js",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "prepublish": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "remove-strict-webpack-plugin": "^0.1.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
