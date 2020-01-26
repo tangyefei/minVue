@@ -1,5 +1,5 @@
 {
-  "name": "vue",
+  "name": "kuz-vue",
   "version": "1.0.0",
   "description": "模拟实现的迷你版本的Vue.js",
   "main": "index.js",
