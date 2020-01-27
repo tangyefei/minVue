@@ -31,7 +31,6 @@ export default class Vue {
     this.optimize(this.ast);
     this.render = this.genCode();
     this.vnode = this.render.call(this.context)
-    debugger;
     this.paint();
   }
 

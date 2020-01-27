@@ -8,14 +8,18 @@
 </head>
 <body>
   <div id="app">
-    {{msg}}
+    <input type="text" v-model="title" />
+    <input type="date" v-model="date" />
+    <textarea v-model="overview"></textarea>
   </div>
   <script src="index.js"></script>
   <script>
     new Vue({
       el: "#app",
       data: {
-        msg: "hello, minVue"
+        title: "kobe bryant, what the fucking thing it is",
+        date: '2020-01-26',
+        overview: 'kobe is killed in a hilecopter crash'
       }
     })
   </script>

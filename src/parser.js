@@ -21,7 +21,6 @@ function  parseStartTag(template){
       attrs: [],
       directives: []
     };
-  
     while(
       !(end = template.match(startTagClose)) && (attr = template.match(attrTag))
     ) {
@@ -87,11 +86,14 @@ export function parseHTML(template, options) {
       options.start(matchStartTag.tagName, matchStartTag.attrs, matchStartTag.unarySlash==='/', matchStartTag.directives)
       template = newTemplate1;
     }
-
+    
     let [matchEndTag, newTemplate2] = parseEndTag(template);
     if(matchEndTag) {
       options.end();
       template = newTemplate2;
+    } else if(matchStartTag.tagName=='input') {
+      // 直接从DOM中获取的模板，自闭标签是没有`/>`的，直接end
+      options.end();
     }
   }
 }

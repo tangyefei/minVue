@@ -5,6 +5,9 @@ function createElement(vnode) {
       node.setAttribute(key, vnode.data[key])
     }
   }
+  if(vnode.value) {
+    node.value = vnode.value;
+  }
   return node;
 }
 const e = createElement;//document.createElement.bind(document);
