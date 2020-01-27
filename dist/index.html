@@ -8,20 +8,28 @@
 </head>
 <body>
   <div id="app">
-    <input type="text" v-model="title" />
-    <input type="date" v-model="date" />
-    <textarea v-model="overview"></textarea>
+    <h3>{{title}}</h3>
   </div>
   <script src="index.js"></script>
   <script>
+    let data ={
+      title: "kobe bryant, what the fucking thing it is",
+      date: '2020-01-26',
+      overview: 'kobe is killed in a hilecopter crash'
+    };
     new Vue({
       el: "#app",
-      data: {
-        title: "kobe bryant, what the fucking thing it is",
-        date: '2020-01-26',
-        overview: 'kobe is killed in a hilecopter crash'
-      }
-    })
+      data
+    });
+    setTimeout(() => {
+      debugger;
+      data.title = 'hard to be happy, actually';
+    },5000)
+
+
+    // <input type="text" v-model="title" />
+    // <input type="date" v-model="date" />
+    // <textarea v-model="overview"></textarea>
   </script>
 </body>
 </html>

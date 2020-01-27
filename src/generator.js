@@ -6,25 +6,40 @@ function generateElement(node) {
   
   const children = genChildren(node);
   let code = `_e("${node.tag}"${data ? `,${data}` : ",{}"}${children ? `,${children}` : ",[]"}`
+  let expr;
+
   if(directives && directives.length) {
     let dir = directives[0];
     if(dir.type == 'if') {
-      let expr = dir.expr;
+      expr = dir.expr;
       code = `${expr} ? ${code} : _t("")`;
     } else if(dir.type == 'for') {
       let [item, ,list] = dir.expr.trim().split(' ')
       code = `...(_l(${list},(${item}, index)=>{return ${code};}))`
     } else if(dir.type == 'model') {
-      let expr = dir.expr;
+      expr = dir.expr;
       code = `${expr?`${code},${expr}`:""}`;
     }
   }
   let result = `${code})`;
+  // ,${expr?"${expr}":""}
   return result;
 }
 // 生成文本节点代码
 function generateText(node) {
-  return `_t(${node.type==2 ? node.expression : JSON.stringify(node.text)})`
+  if(node.type == 2) {
+    // return `_t(${node.expression})`;
+    let rawExpr = node.text.substring(2,node.text.length-2);
+    let t =  `_t(${node.expression}, "${rawExpr}",this)`  
+    return t;
+  } else {
+    return `_t(${JSON.stringify(node.text)})`
+  }
+  // let textNode = 
+  // if(node.expression) {
+  //   new 
+  // }
+  // return textNode;
 }
 function genData(node) {
   if(node.attrs) {

@@ -15,6 +15,7 @@ const t = document.createTextNode.bind(document);
 
 function createDOM(vnode) {
   let dom = vnode.tag ? e(vnode) : t(vnode.text);
+  vnode.dom = dom;
   if(vnode.children && vnode.children.length) {
     vnode.children.forEach(child => {
       dom.appendChild(createDOM(child))

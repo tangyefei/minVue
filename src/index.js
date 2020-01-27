@@ -3,6 +3,7 @@ import optimize from './optimizer';
 import generate from './generator'
 import * as vnodeFuncs from './vnode';
 import helper from './helper';
+import Observer from './Observer';
 
 
 export default class Vue {
@@ -14,7 +15,11 @@ export default class Vue {
     this.el = el;
     this.template = this.el.outerHTML;
     this.options = options || {};
-    this.context = Object.assign(options.data || {}, vnodeFuncs);
+    this.data = options.data || {};
+    
+    new Observer(this.data);
+
+    this.context = Object.assign(this.data, vnodeFuncs);
     
     this.ast = null;
     this.code = null;

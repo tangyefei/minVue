@@ -1,3 +1,4 @@
+import Watcher from './Watcher';
 export default class VNode {
   constructor(tag, data, children, text, value) {
     this.tag = tag;
@@ -6,10 +7,20 @@ export default class VNode {
     this.text = text;
     this.value = value;
   }
+
+  update(value) {
+    if(!this.tag) {
+      this.dom.textContent = value;
+    }
+  }
 }
 
-export const createTextNode = (text) => {
-  return new VNode(null, null, null, text);
+export const createTextNode = (text, expr, context) => {
+  let vnode = new VNode(null, null, null, text, null);
+  if(expr) {
+    new Watcher(vnode, expr, context)
+  }
+  return vnode;
 }
 
 export const createElementNode = (tag, data, children, value) => {
